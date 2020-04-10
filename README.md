@@ -24,7 +24,8 @@
 
 с уважением Джавид Рашидов.
 
-*Ссылка на проект: https://telepuzig.github.io/mesto/index.html
+**Проектная работа**
+* [Ссылка на проектную работу - mesto](https://telepuzig.github.io/mesto/index.html)
 
 
 **Figma**
