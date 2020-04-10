@@ -24,6 +24,7 @@
 
 с уважением Джавид Рашидов.
 
+*Ссылка на проект: https://telepuzig.github.io/mesto/index.html
 
 
 **Figma**
