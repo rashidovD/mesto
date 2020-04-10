@@ -18,52 +18,52 @@
           <div class="profile__info">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
             <p class="profile__job">Исследователь океана</p>
-            <button class="button profile__edit-button"><img src="./images/editButton.svg" alt="Ручка"></button>
+            <button type="button" class="button profile__edit-button"><img src="./images/editButton.svg" alt="Ручка"></button>
           </div>
         </div>
-        <button class="button profile__add-button"><img src="./images/addButton.svg" alt="Плюс"></button>
+        <button type="button" class="button profile__add-button"><img src="./images/addButton.svg" alt="Плюс"></button>
       </section>
       <section class="places">
         <div class="place">
           <img src="./images/goraKara4ay.jpg" alt="Карачаевск" class="place__image">
           <div class="place__description">
             <p class="place__name">Карачаевск</p>
-            <button class="place__like"><img src="./images/heart1.svg" alt="Лайк"></button>
+            <button type="button" class="place__like"><img src="./images/heart1.svg" alt="Лайк"></button>
           </div>
         </div>
         <div class="place">
           <img src="./images/elbrus.jpg" alt="Эльбрус" class="place__image">
           <div class="place__description">
             <p class="place__name">Гора Эльбрус</p>
-            <button class="place__like"><img src="./images/heart1.svg" alt="Лайк"></button>
+            <button type="button" class="place__like"><img src="./images/heart1.svg" alt="Лайк"></button>
           </div>
         </div>
         <div class="place">
           <img src="./images/dombay.jpg" alt="Домбай" class="place__image">
           <div class="place__description">
             <p class="place__name">Домбай</p>
-            <button class="place__like"><img src="./images/heart1.svg" alt="Лайк"></button>
+            <button type="button" class="place__like"><img src="./images/heart1.svg" alt="Лайк"></button>
           </div>
         </div>
         <div class="place">
           <img src="./images/goraElbrus.jpg" alt="Эльбрус" class="place__image">
           <div class="place__description">
             <p class="place__name">Гора Эльбрус</p>
-            <button class="place__like"><img src="./images/heart1.svg" alt="Лайк"></button>
+            <button type="button" class="place__like"><img src="./images/heart1.svg" alt="Лайк"></button>
           </div>
         </div>
         <div class="place">
           <img src="./images/goraDombay.jpg" alt="Домбай" class="place__image">
           <div class="place__description">
             <p class="place__name">Домбай</p>
-            <button class="place__like"><img src="./images/heart1.svg" alt="Лайк"></button>
+            <button type="button" class="place__like"><img src="./images/heart1.svg" alt="Лайк"></button>
           </div>
         </div>
         <div class="place">
           <img src="./images/goraKara4ay.jpg" alt="Карачаевск" class="place__image">
           <div class="place__description">
-            <p class="place__name">Карачаевск</p>
-            <button class="place__like"><img src="./images/heart1.svg" alt="Лайк"></button>
+            <p class="place__name">Карачаево-Ч...</p>
+            <button type="button" class="place__like"><img src="./images/heart1.svg" alt="Лайк"></button>
           </div>
         </div>
       </section>
@@ -73,12 +73,12 @@
     </footer>
     <div class="popup">
       <div class="popup__container">
-        <img src="./images/closeIcon.svg" alt="Закрыть" class="popup__close">
+        <button class="popup__close" type="button"></button>
         <h3 class="popup__title">Редактировать профиль</h3>
         <form class="popup__form">
-          <input type="text" placeholder="Имя" class="popup__input popup__input_type_name">
-          <input type="text" placeholder="О себе" class="popup__input popup__input_type_job">
-          <button class="button popup__button">Сохранить</button>
+          <input type="text" placeholder="Имя" class="popup__input popup__input_type_name" required>
+          <input type="text" placeholder="О себе" class="popup__input popup__input_type_job" required>
+          <button type="submit" class="button popup__button">Сохранить</button>
         </form>
       </div>
     </div>
@@ -87,3 +87,16 @@
   <script src="./js/script.js"></script>
 </body>
 </html>
+
+
+<!--
+Надо исправить:
+Комментарии в разметке + Всем кнопкам добавлен атрибут type="", название карточки исправлено как в макете, кнопка закрыть сделана button
+.profile__avatar размер не соответствует макету + Исправлено, сделал размер 120px как по макету.
+на странице 320 размер логотипа не соовтетствует макету + Исправлено, размер логотипа на 320 изменен как по макету 103px.
+на странице 320 .profile__job параметры шрифта не соответствуют макету + Исправлено, размер шрифта на 320 теперь 14px.
+Чтобы не повышать вес селектора .popup.popup_opened, подключите файл модификатора после основного popup.css + Убрал повышение веса селектора, подключил модификатор после основного popup.css  как вы и сказали.
+
+
+ВСЕ КРИТИЧНЫЕ ЗАМЕЧАНИЯ ПОМЕЧЕННЫЕ КАК "НАДО ИСПРАВИТЬ" ИСПРАВЛЕНЫ)
+-->

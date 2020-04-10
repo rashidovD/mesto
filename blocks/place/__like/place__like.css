@@ -7,10 +7,4 @@
   width: 20px;
   height: 19px;
   padding: 0;
-  transition: .3s;
-}
-
-.place__like:hover {
-  opacity: .6;
-  transform: scale(1.3);
 }
