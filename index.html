@@ -24,79 +24,56 @@
         <button type="button" class="button profile__add-button"><img src="./images/addButton.svg" alt="Плюс"></button>
       </section>
       <section class="places">
-        <div class="place">
-          <img src="./images/goraKara4ay.jpg" alt="Карачаевск" class="place__image">
-          <div class="place__description">
-            <p class="place__name">Карачаевск</p>
-            <button type="button" class="place__like"><img src="./images/heart1.svg" alt="Лайк"></button>
+      <template id="card-template">
+          <div class="place">
+            <img src="" alt="" class="place__image">
+            <button type="button" class="place__delete-card"></button>
+            <div class="place__description">
+              <p class="place__name"></p>
+              <button type="button" class="place__like"></button>
+            </div>
           </div>
-        </div>
-        <div class="place">
-          <img src="./images/elbrus.jpg" alt="Эльбрус" class="place__image">
-          <div class="place__description">
-            <p class="place__name">Гора Эльбрус</p>
-            <button type="button" class="place__like"><img src="./images/heart1.svg" alt="Лайк"></button>
-          </div>
-        </div>
-        <div class="place">
-          <img src="./images/dombay.jpg" alt="Домбай" class="place__image">
-          <div class="place__description">
-            <p class="place__name">Домбай</p>
-            <button type="button" class="place__like"><img src="./images/heart1.svg" alt="Лайк"></button>
-          </div>
-        </div>
-        <div class="place">
-          <img src="./images/goraElbrus.jpg" alt="Эльбрус" class="place__image">
-          <div class="place__description">
-            <p class="place__name">Гора Эльбрус</p>
-            <button type="button" class="place__like"><img src="./images/heart1.svg" alt="Лайк"></button>
-          </div>
-        </div>
-        <div class="place">
-          <img src="./images/goraDombay.jpg" alt="Домбай" class="place__image">
-          <div class="place__description">
-            <p class="place__name">Домбай</p>
-            <button type="button" class="place__like"><img src="./images/heart1.svg" alt="Лайк"></button>
-          </div>
-        </div>
-        <div class="place">
-          <img src="./images/goraKara4ay.jpg" alt="Карачаевск" class="place__image">
-          <div class="place__description">
-            <p class="place__name">Карачаево-Ч...</p>
-            <button type="button" class="place__like"><img src="./images/heart1.svg" alt="Лайк"></button>
-          </div>
-        </div>
+      </template>
       </section>
     </main>
     <footer class="footer">
       <p class="footer__copyright">&copy; 2020 Mesto Russia </p>
     </footer>
+
     <div class="popup">
       <div class="popup__container">
         <button class="popup__close" type="button"></button>
         <h3 class="popup__title">Редактировать профиль</h3>
         <form class="popup__form" action="#" method="POST" name="userInfo">
-          <input type="text" placeholder="Имя" class="popup__input popup__input_type_name" required>
-          <input type="text" placeholder="О себе" class="popup__input popup__input_type_job" required>
+          <input type="text" placeholder="Имя" class="popup__input popup__input_type_name" required maxlength="20">
+          <input type="text" placeholder="О себе" class="popup__input popup__input_type_job" required maxlength="30">
           <button type="submit" class="button popup__button">Сохранить</button>
         </form>
       </div>
     </div>
+
+    <div class="popup-place popup">
+      <div class="popup__container">
+        <button class="popup__add-close" type="button"></button>
+        <h3 class="popup__title">Новое место</h3>
+        <form class="popup-place__form" action="#" method="POST" name="placeInfo">
+          <input type="text" placeholder="Название" class="popup__input popup__input_type_place" required maxlength="30">
+          <input type="text" placeholder="Ссылка на картинку" class="popup__input popup__input_type_url" required>
+          <button type="submit" class="button popup__add-button">Создать</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="popup-image popup">
+      <div class="popup-image__container">
+        <button class="popup-image__close" type="button"></button>
+        <img src="" alt="" class="popup-image__image">
+        <p class="popup-image__text">привет</p>
+      </div>
+    </div>
+
   </div>
 
   <script src="./js/script.js"></script>
 </body>
 </html>
-
-
-<!--
-Надо исправить:
-Комментарии в разметке + Всем кнопкам добавлен атрибут type="", название карточки исправлено как в макете, кнопка закрыть сделана button
-.profile__avatar размер не соответствует макету + Исправлено, сделал размер 120px как по макету.
-на странице 320 размер логотипа не соовтетствует макету + Исправлено, размер логотипа на 320 изменен как по макету 103px.
-на странице 320 .profile__job параметры шрифта не соответствуют макету + Исправлено, размер шрифта на 320 теперь 14px.
-Чтобы не повышать вес селектора .popup.popup_opened, подключите файл модификатора после основного popup.css + Убрал повышение веса селектора, подключил модификатор после основного popup.css  как вы и сказали.
-
-
-ВСЕ КРИТИЧНЫЕ ЗАМЕЧАНИЯ ПОМЕЧЕННЫЕ КАК "НАДО ИСПРАВИТЬ" ИСПРАВЛЕНЫ)
--->

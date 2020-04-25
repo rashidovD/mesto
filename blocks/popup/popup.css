@@ -1,7 +1,9 @@
 @import url('./__button/popup__button.css');
+@import url('./__add-button/popup__add-button.css');
 @import url('./__input/popup__input.css');
 @import url('./__form/popup__form.css');
 @import url('./__close/popup__close.css');
+@import url('./__add-close/popup__add-close.css');
 @import url('./__container/popup__container.css');
 @import url('./__title/popup__title.css');
 
@@ -14,5 +16,8 @@
   background-color: rgba(0, 0, 0, .5);
   align-items: center;
   justify-content: center;
-  display: none;
+  display: flex;
+  transition: all .3s ease;
+	opacity: 0;
+	visibility: hidden;
 }
