@@ -12,7 +12,10 @@ const formElement = document.querySelector('.popup__form');
 const popupAddCardButton = document.querySelector('.popup-place__form');
 const nameInput = document.querySelector('.popup__input_type_name');
 const jobInput = document.querySelector('.popup__input_type_job');
-
+const popup = document.querySelector('.popup');
+const popupPlace = document.querySelector('.popup-place');
+const placeInput = document.querySelector('.popup__input_type_place');
+const urlInput = document.querySelector('.popup__input_type_url');
 
 
 // Шесть карточек «из коробки»
@@ -59,18 +62,17 @@ function createCard(name, link) {
 
 
 // функция добавления шаблонных карточек 'из коробки'
-function addTemplateCard () {
+function addTemplateCards () {
   for (let i = 0; i < initialCards.length; i++) {
     const card = initialCards[i];
     const name = card.name;
     const link = card.link;
     const cardElement = createCard(name, link);
-    createCard(name, link);
     cardsContainer.append(cardElement);
   }
 }
 // вызов функции добавления шаблонных карточек
-addTemplateCard();
+addTemplateCards();
 
 // объявление DOM элементов после создания карточки
 const popupImgclose = document.querySelector('.popup-image__close');
@@ -81,29 +83,20 @@ const popupImgText = document.querySelector('.popup-image__text');
 
 // Функция открытия popup'a 'редактирования имени и работы в профиле'
 function openPopup() {
-  let popupOpened = document.querySelector('.popup');
-
   // Заполнение полей формы при открытии
   nameInput.value = profile.querySelector('.profile__name').textContent;
   jobInput.value = profile.querySelector('.profile__job').textContent;
-
-  popupOpened.classList.add('popup_opened');
+  popup.classList.add('popup_opened');
 }
 
 // функция открытия попапа 'заполнения карточек'
 function openPopupPlace() {
-  let popupOpened = document.querySelector('.popup-place')
-  popupOpened.classList.add('popup_opened');
+  popupPlace.classList.add('popup_opened');
 }
-
-
 
 // функция закрытия popup через кнопку закрытия
 function closePopup() {
-  let popupOpened = document.querySelector('.popup');
-
-  popupOpened.classList.remove('popup_opened');
-
+  popup.classList.remove('popup_opened');
   // сброс несохраненных данных формы
   nameInput.value = '';
   jobInput.value = '';
@@ -111,10 +104,12 @@ function closePopup() {
 
 // функция закрытия попапа 'заполнения карточек'
 function closePopupPlace() {
-  let popupOpened = document.querySelector('.popup-place');
+  popupPlace.classList.remove('popup_opened');
+}
 
-
-  popupOpened.classList.remove('popup_opened');
+// функция закрытия изображения
+function imgClosed() {
+  popupImage.classList.remove('popup_opened');
 }
 
 // функция удаления карточки
@@ -127,19 +122,11 @@ document.querySelector('.places').onclick = function(e) {
   card.remove();
 }
 
-// функция закрытия изображения
-function imgClosed() {
-  let popupOpened = document.querySelector('.popup-image');
-  popupOpened.classList.remove('popup_opened');
-}
-
-
 
 // функция обработчик лайка
 function handleClickLike (evt) {
   evt.target.classList.toggle('place__like_active');
 }
-
 
 
 // увеличение изображений
@@ -148,8 +135,6 @@ function handleDigitClick(event) {
   popupImageImage.src = event.target.src;
   popupImgText.textContent = event.target.parentNode.textContent;
 }
-
-
 
 
 // функция для сохранения значений из полей формы при нажатии кнопки "сохранить"
@@ -164,17 +149,13 @@ function addInfo(evt) {
 // слушатели событий
 popupAddCardButton.addEventListener('submit', function (evt) {
   evt.preventDefault();
-  const name = document.querySelector('.popup__input_type_place');
-  const link = document.querySelector('.popup__input_type_url');
 
-
-  const cardElement = createCard(name.value, link.value);
-  cardsContainer.append(cardElement);
-
+  const cardElement = createCard(placeInput.value, urlInput.value);
+  cardsContainer.prepend(cardElement);
   closePopupPlace();
 
-  name.value = '';
-  link.value = '';
+  placeInput.value = '';
+  urlInput.value = '';
 })
 
 
@@ -188,5 +169,6 @@ popupClose.addEventListener('click', closePopup);
 popupImgclose.addEventListener('click', imgClosed);
 
 
-
-
+// комментарии к коду как МОЖНО УЛУЧШИТЬ приняты к сведению,
+//  буду их исправлять до следующего спринта,
+//  а то сейчас по работе плотно не получается этим заняться
