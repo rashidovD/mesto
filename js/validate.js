@@ -3,14 +3,14 @@ const showInputError = (formElem, inputElement, errorMessage, inputErrorClass, e
   inputElement.classList.add(inputErrorClass);
   errorElement.textContent = errorMessage;
   errorElement.classList.add(errorClass);
-}
+};
 
 const hideInputError = (formElem, inputElement, inputErrorClass, errorClass) => {
   const errorElement = formElem.querySelector(`#${inputElement.id}-error`);
   inputElement.classList.remove(inputErrorClass);
-  errorElement.classList.remove(errorClass)
+  errorElement.classList.remove(errorClass);
   errorElement.value = '';
-}
+};
 
 const checkInputValidity = (formElem, inputElement, {inputErrorClass, errorClass}) => {
   if (!inputElement.validity.valid) {
@@ -30,17 +30,17 @@ const setEventListeners = (formElem, {inputSelector, submitButtonSelector, inact
       toggleButtonState(inputList, buttonElement, inactiveButtonClass);
     })
   })
-}
+};
 
 const enableValidation = ({formSelector, ...other}) => {
   const formList = Array.from(document.querySelectorAll(formSelector));
   formList.forEach((formElem) => {
     formElem.addEventListener('submit', function (evt) {
       evt.preventDefault();
-    })
+    });
     setEventListeners(formElem, other);
   })
-}
+};
 
 function hasInvalidInput(inputList) {
   return inputList.some((inputElement) => {

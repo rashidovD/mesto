@@ -4,14 +4,10 @@ const cardsContainer = content.querySelector('.places');
 const profile = document.querySelector('.profile');
 const profileName = profile.querySelector('.profile__name');
 const profileJob = profile.querySelector('.profile__job');
-const profileBox = profile.querySelector('.profile__box');
-const profileInfo = profile.querySelector('.profile__info');
 const editButton = profile.querySelector('.profile__edit-button');
 const addButton = profile.querySelector('.profile__add-button');
 const popupPlaceClose = document.querySelector('.popup__add-close');
 const popupClose = document.querySelector('.popup__close');
-const popupButton = document.querySelector('.popup__button');
-const popupAddButton = document.querySelector('.popup__add-button');
 
 // ФОРМЫ С ПОЛЯМИ
 const formElement = document.forms.userInfo;
@@ -80,15 +76,22 @@ function addTemplateCards(cards, container) {
 addTemplateCards();
 
 // объявление DOM элементов после создания карточки
-const popupImgclose = document.querySelector('.popup-image__close');
+const popupImgClose = document.querySelector('.popup-image__close');
 const popupImageImage = document.querySelector('.popup-image__image');
 const popupImage = document.querySelector('.popup-image');
 const popupImgText = document.querySelector('.popup-image__text');
 
-
 // ЗАКРЫТЬ или ОТКРЫТЬ Popup
-function openOrClosePopup(popupElem) {
+function togglePopup(popupElem) {
   popupElem.classList.toggle('popup_opened');
+// вешаем события при открытии модального окна и удаляем при закрытии
+  if (popupElem.classList.contains('popup_opened')) {
+    document.addEventListener('keydown', closeEsc);
+    document.addEventListener('click', closeOverlay);
+  } else {
+    document.removeEventListener('keydown', closeEsc);
+    document.removeEventListener('click', closeOverlay);
+  }
 }
 
 // Заполнение полей формы при открытии
@@ -115,7 +118,7 @@ function handleClickLike(evt) {
 
 // увеличение изображений
 function handleDigitClick(event) {
-  openOrClosePopup(popupImage);
+  togglePopup(popupImage);
   popupImageImage.src = event.target.src;
   popupImageImage.alt = event.target.alt;
   popupImgText.textContent = event.target.parentNode.textContent;
@@ -126,7 +129,7 @@ function addInfo(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
-  openOrClosePopup(popup);
+  togglePopup(popup);
 }
 
 // очистить залипший текст ошибки
@@ -137,60 +140,57 @@ const errorClear = (form) => {
       hideInputError(form, input, 'popup__input_type_error', 'popup__input-error_active');
     }
   })
-}
+};
 
 // закрыть кнопкой Esc
 function closeEsc(evt) {
   const popupOpened = document.querySelector('.popup_opened');
-  if (evt.keyCode === 27 && popupOpened) {
-    openOrClosePopup(popupOpened);
+  if (evt.key === 'Escape' && popupOpened) {
+    togglePopup(popupOpened);
   }
 }
 
 // закрыть кликом по фону
 function closeOverlay(evt) {
   if (evt.target.classList.contains('popup')) {
-    openOrClosePopup(evt.target.closest('.popup'));
-  };
-};
+    togglePopup(evt.target.closest('.popup'));
+  }
+}
 
 // СЛУШАТЕЛИ С О Б Ы Т И Й
-document.addEventListener('click', closeOverlay)
-document.addEventListener('keydown', closeEsc);
 
 // добавление карточек при нажатии кнопки 'создать'
 popupAddCardButton.addEventListener('submit', function (evt) {
   evt.preventDefault();
   const cardElement = createCard(placeInput.value, urlInput.value);
   cardsContainer.prepend(cardElement);
-  openOrClosePopup(popupPlace);
+  togglePopup(popupPlace);
   popupAddCardButton.reset();
-})
+});
 
 addButton.addEventListener('click', function () {
   placeInput.value = '';
   urlInput.value = '';
   errorClear(popupAddCardButton);
-  openOrClosePopup(popupPlace);
+  togglePopup(popupPlace);
 });
 
 popupPlaceClose.addEventListener('click', function () {
-  openOrClosePopup(popupPlace);
+  togglePopup(popupPlace);
 });
 
 formElement.addEventListener('submit', addInfo);
 
 editButton.addEventListener('click', function () {
-
   fillFields();
-  openOrClosePopup(popup);
+  togglePopup(popup);
 });
 
 popupClose.addEventListener('click', function () {
-  openOrClosePopup(popup);
+  togglePopup(popup);
   formElement.reset();
 });
 
-popupImgclose.addEventListener('click', function () {
-  openOrClosePopup(popupImage);
+popupImgClose.addEventListener('click', function () {
+  togglePopup(popupImage);
 });
