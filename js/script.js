@@ -8,6 +8,7 @@ const editButton = profile.querySelector('.profile__edit-button');
 const addButton = profile.querySelector('.profile__add-button');
 const popupPlaceClose = document.querySelector('.popup__add-close');
 const popupClose = document.querySelector('.popup__close');
+const popupAddButton = document.querySelector('.popup__add-button');
 
 // ФОРМЫ С ПОЛЯМИ
 const formElement = document.forms.userInfo;
@@ -172,6 +173,15 @@ addButton.addEventListener('click', function () {
   placeInput.value = '';
   urlInput.value = '';
   errorClear(popupAddCardButton);
+  // если значения полей пустые то отключаем кнопку
+  if(placeInput.value.length <= 0 && urlInput.value.length <= 0) {
+    popupAddButton.classList.add('popup__button_disabled');
+    popupAddButton.setAttribute('disabled', true);
+  } else {
+    popupAddButton.classList.remove('popup__button_disabled');
+    popupAddButton.removeAttribute('disabled');
+  }
+
   togglePopup(popupPlace);
 });
 
