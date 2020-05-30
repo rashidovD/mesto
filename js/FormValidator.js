@@ -23,6 +23,15 @@ export class FormValidator {
     errorElement.textContent = '';
   }
 
+  _errorClear () {
+    const inputList = Array.from(this._form.querySelectorAll(this._inputSelector));
+    inputList.forEach(inputElement => {
+      if (inputElement.classList.contains(this._inputErrorClass)) {
+        this._hideInputError(inputElement);
+      }
+    })
+  };
+
   _checkInputValidity(inputElement) {
     if (!inputElement.validity.valid) {
       this._showInputError(inputElement);
@@ -59,5 +68,6 @@ export class FormValidator {
 
   enableValidation() {
     this._setEventListeners();
+    this._errorClear();
   }
 }

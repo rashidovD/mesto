@@ -1,3 +1,18 @@
+import { togglePopup } from './script.js'
+
+
+
+const popupImageImage = document.querySelector('.popup-image__image');
+const popupImage = document.querySelector('.popup-image');
+const popupImgText = document.querySelector('.popup-image__text');
+
+function zoomImage(link, text) {
+  togglePopup(popupImage);
+  popupImageImage.src = link;
+  popupImageImage.alt = text;
+  popupImgText.textContent = text;
+}
+
 export class Card {
   constructor(data, cardSelector) {
     this._name = data.name;
@@ -25,13 +40,18 @@ export class Card {
   }
 
   _setEventListeners() {
-    this._card.querySelector('.place__like').addEventListener('click', (event) => {
-      this._handleClickLike(event);
+    this._card.querySelector('.place__image').addEventListener('click', (e) => {
+      zoomImage(e.target.src, e.target.alt)
     })
 
-    this._card.querySelector('.place__delete-card').addEventListener('click', (event) => {
-      this._handleDelete(event);
-    })
+    this._card.querySelector('.place__like').addEventListener('click', (e) => {
+      this._handleClickLike(e);
+    });
+
+    this._card.querySelector('.place__delete-card').addEventListener('click', (e) => {
+      this._handleDelete(e);
+    });
+
   }
 
   generateCard() {

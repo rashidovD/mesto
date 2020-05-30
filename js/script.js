@@ -13,10 +13,11 @@ const popupPlaceClose = document.querySelector('.popup__add-close');
 const popupClose = document.querySelector('.popup__close');
 
 // ФОРМЫ С ПОЛЯМИ
+// формы и поля редактирования профиля
 const formElement = document.forms.userInfo;
 const nameInput = formElement.elements.name;
 const jobInput = formElement.elements.job;
-
+// формы и поля добавления новых карточек
 const popupAddCardButton = document.forms.placeInfo;
 const placeInput = popupAddCardButton.elements.place;
 const urlInput = popupAddCardButton.elements.link;
@@ -52,11 +53,11 @@ const initialCards = [{
 ];
 
 // function - рендер карточек 'из коробки' на страницу
-const renderCards = () => {
-  initialCards.forEach((item) => {
+const renderCards = (arrayCards, container) => {
+  arrayCards.forEach((item) => {
     const card = new Card(item, '#card-template');
     const cardElement = card.generateCard();
-    cardsContainer.append(cardElement);
+    container.append(cardElement);
   });
 };
 
@@ -67,7 +68,7 @@ const popupImage = document.querySelector('.popup-image');
 const popupImgText = document.querySelector('.popup-image__text');
 
 // ЗАКРЫТЬ или ОТКРЫТЬ Popup
-function togglePopup(popupElem) {
+export function togglePopup(popupElem) {
   popupElem.classList.toggle('popup_opened');
   // вешаем события при открытии модального окна и удаляем при закрытии
   if (popupElem.classList.contains('popup_opened')) {
@@ -90,17 +91,6 @@ function fillFields() {
   jobInput.dispatchEvent(event);
 }
 
-// увеличение изображений
-function zoomImage(event) {
-  if(event.target.classList.contains('place__image')){
-  togglePopup(popupImage);
-  popupImageImage.src = event.target.src;
-  popupImageImage.alt = event.target.alt;
-  popupImgText.textContent = event.target.parentNode.textContent;
-  }
-}
-
-
 // функция для сохранения значений из полей формы при нажатии кнопки "сохранить"
 function addInfo(evt) {
   evt.preventDefault();
@@ -108,19 +98,6 @@ function addInfo(evt) {
   profileJob.textContent = jobInput.value;
   togglePopup(popup);
 }
-
-// очистка залипшего текста в формах
-const errorClear = (form) => {
-  const listInput = Array.from(form.querySelectorAll('.popup__input'));
-  listInput.forEach(inputElement => {
-    if (inputElement.classList.contains('popup__input_type_error')) {
-      const errorElement = form.querySelector(`#${inputElement.id}-error`);
-      inputElement.classList.remove('popup__input_type_error');
-      errorElement.classList.remove('popup__input-error_active');
-      errorElement.textContent = '';
-    }
-  })
-};
 
 // закрыть кнопкой Esc
 function closeEsc(evt) {
@@ -156,7 +133,6 @@ const placeFormValidation = new FormValidator({
   errorClass: 'popup__input-error_active'
 }, popupAddCardButton);
 
-
 // СЛУШАТЕЛИ С О Б Ы Т И Й
 
 // добавление карточек при нажатии кнопки 'создать'
@@ -175,7 +151,8 @@ popupAddCardButton.addEventListener('submit', function (evt) {
 addButton.addEventListener('click', function () {
   placeInput.value = '';
   urlInput.value = '';
-  errorClear(popupAddCardButton);
+
+  placeFormValidation.enableValidation();
 
   // при каждом открытии поля добавления картинки пустые,
   // поэтому отключаем кнопку
@@ -197,8 +174,6 @@ popupPlaceClose.addEventListener('click', function () {
 
 formElement.addEventListener('submit', addInfo);
 
-cardsContainer.addEventListener('click', zoomImage);
-
 editButton.addEventListener('click', function () {
   fillFields();
   togglePopup(popup);
@@ -214,7 +189,7 @@ popupImgClose.addEventListener('click', function () {
 });
 
 // вызов рендера карточек
-renderCards();
+renderCards(initialCards, cardsContainer);
 
 // включение валидации
 editFormValidation.enableValidation();
