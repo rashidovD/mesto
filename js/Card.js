@@ -37,6 +37,7 @@ export class Card {
   _handleDelete(event) {
     const card = event.target.closest('.place');
     card.remove();
+    this._card = null;
   }
 
   _setEventListeners() {
