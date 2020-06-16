@@ -1,5 +1,5 @@
 {
-  "homepage": "https://telepuzig.github.io/mesto",
+  "homepage": "https://telepuzig.github.io/mesto/",
   "name": "mesto",
   "version": "1.0.0",
   "description": "my project in Yandex Praktikum",
@@ -7,8 +7,8 @@
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
-    "build": "rm -rf dist && webpack",
-    "dev": "webpack-dev-server --open --watch"
+    "build": "rm -rf dist && webpack --mode production",
+    "dev": "webpack-dev-server --mode development --open --watch"
   },
   "repository": {
     "type": "git",
