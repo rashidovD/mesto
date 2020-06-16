@@ -17,7 +17,7 @@
 
 
 **Проектная работа**
-* [Ссылка на проектную работу - mesto](https://telepuzig.github.io/mesto/index.html)
+* [Ссылка на проектную работу - mesto](https://telepuzig.github.io/mesto)
 
 
 **Figma**
