@@ -1,23 +1,9 @@
-import { togglePopup } from './script.js'
-
-
-
-const popupImageImage = document.querySelector('.popup-image__image');
-const popupImage = document.querySelector('.popup-image');
-const popupImgText = document.querySelector('.popup-image__text');
-
-function zoomImage(link, text) {
-  togglePopup(popupImage);
-  popupImageImage.src = link;
-  popupImageImage.alt = text;
-  popupImgText.textContent = text;
-}
-
-export class Card {
-  constructor(data, cardSelector) {
-    this._name = data.name;
+export default class Card {
+  constructor(data, cardSelector, handleCardClick) {
+    this._name = data.name
     this._link = data.link;
     this._cardSelector = cardSelector;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -41,10 +27,6 @@ export class Card {
   }
 
   _setEventListeners() {
-    this._card.querySelector('.place__image').addEventListener('click', (e) => {
-      zoomImage(e.target.src, e.target.alt)
-    })
-
     this._card.querySelector('.place__like').addEventListener('click', (e) => {
       this._handleClickLike(e);
     });
@@ -53,6 +35,10 @@ export class Card {
       this._handleDelete(e);
     });
 
+    this._card.querySelector('.place__image').addEventListener('click', () => this._handleCardClick({
+      name: this._name,
+      link: this._link
+    }));
   }
 
   generateCard() {
