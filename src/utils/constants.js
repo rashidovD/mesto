@@ -1,30 +1,4 @@
 
-// Шесть карточек «из коробки»
-export const initialCards = [{
-  name: 'Архыз',
-  link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-},
-{
-  name: 'Челябинская область',
-  link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-},
-{
-  name: 'Иваново',
-  link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-},
-{
-  name: 'Камчатка',
-  link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-},
-{
-  name: 'Холмогорский район',
-  link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-},
-{
-  name: 'Байкал',
-  link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-}
-];
 
 // Объявление DOM элементов
 // контейнер для вставки карточек
@@ -41,6 +15,8 @@ export const jobInput = formElement.elements.job;
 // формы и поля добавления новых карточек
 export const popupAddCardButton = document.forms.placeInfo;
 
+export const avatarInfo = document.forms.avatarInfo;
+
 // Настройки валидации форм (2 параметра у FormValidator - объект с настройками и элемент формы)
 export const validationSettings = {
   formSelector: '.form',
@@ -51,3 +27,5 @@ export const validationSettings = {
   errorClass: 'popup__input-error_active'
 };
 
+export const baseURL = 'https://mesto.nomoreparties.co/v1/cohort-12';
+export const token = 'd358cac0-a420-4d4c-9dd2-c14a231c4bbb';

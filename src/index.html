@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MESTO Russia</title>
-  <!-- <link rel="stylesheet" href="./pages/index.css"> -->
 </head>
 <body>
   <div class="root">
@@ -14,13 +13,17 @@
     <main class="content">
       <section class="profile">
         <div class="profile__box">
-          <img src="./images/mestoAvatar.jpg" alt="Аватар" class="profile__avatar">
+
+          <button class="profile__avabutton">
+            <img alt="Аватар" class="profile__avatar">
+          </button>
+
           <div class="profile__info">
             <div class="profile__details">
-              <h1 class="profile__name">Жак-Ив Кусто</h1>
+              <h1 class="profile__name"></h1>
               <button type="button" class="button profile__edit-button"><img src="./images/editButton.svg" alt="Ручка"></button>
             </div>
-            <p class="profile__job">Исследователь океана</p>
+            <p class="profile__job"></p>
           </div>
         </div>
         <button type="button" class="button profile__add-button"><img src="./images/addButton.svg" alt="Плюс"></button>
@@ -32,7 +35,10 @@
             <button type="button" class="place__delete-card"></button>
             <div class="place__description">
               <p class="place__name"></p>
-              <button type="button" class="place__like"></button>
+              <div class="place__like-box">
+                <button type="button" class="place__like"></button>
+                <p class="place__count">1</p>
+              </div>
             </div>
           </div>
       </template>
@@ -47,7 +53,7 @@
         <button class="popup__close" type="button"></button>
         <h3 class="popup__title">Редактировать профиль</h3>
         <form class="popup__form form" action="#" method="POST" name="userInfo" novalidate>
-            <input type="text" name="name"placeholder="Имя" class="popup__input popup__input_type_name" required pattern="[a-zA-ZА-ЯЁа-яё\s\-]+" minlength="2" maxlength="40"  id="name-input">
+            <input type="text" name="name" placeholder="Имя" class="popup__input popup__input_type_name" required pattern="[a-zA-ZА-ЯЁа-яё\s\-]+" minlength="2" maxlength="40"  id="name-input">
             <span class="popup__input-error" id="name-input-error"></span>
             <input type="text" name="job" placeholder="О себе" class="popup__input popup__input_type_job" required minlength="2" maxlength="200" id="job-input">
             <span class="popup__input-error" id="job-input-error"></span>
@@ -78,8 +84,29 @@
       </div>
     </div>
 
+    <div class="popup-delete popup">
+      <div class="popup-delete__container">
+        <form class="form">
+          <button class="popup__close" type="button"></button>
+          <h3 class="popup__title">Вы уверены?</h3>
+          <button class="button popup-delete__button" type="submit">Да</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="popup-avatar popup">
+      <div class="popup-avatar__container">
+        <button class="popup__close" type="button"></button>
+        <h3 class="popup__title">Обновить аватар</h3>
+        <form novalidate class="popup__form form" name="avatarInfo" action="#" method="POST">
+          <input type="url" class="popup__input popup__input_type_link" name="link" placeholder="Ссылка на картинку" id="avatar-input" required>
+          <span class="popup__input-error" id="avatar-input-error"></span>
+          <button class="button button__elem popup__avatar-button">Сохранить</button>
+        </form>
+      </div>
+    </div>
+
   </div>
 
-  <!-- <script type="module" src="./js/index.js"></script> -->
 </body>
 </html>

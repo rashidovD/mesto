@@ -63,7 +63,7 @@ export default class FormValidator {
         this._hideInputError(input);
       }
     });
-    if (this._button.classList.contains('popup__add-button')) {
+    if (this._button.classList.contains('button')) {
       this._toggleButtonState(this._inputList, this._button);
     }
   }

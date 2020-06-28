@@ -1,5 +1,6 @@
 @import url('./__button/popup__button.css');
 
+@import url('./__avatar-button/popup__avatar-button.css');
 @import url('./__add-button/popup__add-button.css');
 @import url('./__add-button/_disabled/popup__add-button_disabled.css');
 @import url('./__input/popup__input.css');
