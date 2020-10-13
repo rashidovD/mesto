@@ -17,4 +17,4 @@
 
 
 **Проектная работа**
-* [Ссылка на проектную работу - mesto](https://telepuzig.github.io/mesto)
+* [Ссылка на проектную работу - mesto](https://rashidovD.github.io/mesto)
